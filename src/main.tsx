@@ -16,8 +16,12 @@ import checkLogin from './utils/checkLogin';
 import changeTheme from './utils/changeTheme';
 import useStorage from './utils/useStorage';
 import './mock';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useGetUserInfo } from '@/API/User';
 
 const store = createStore(rootReducer);
+const queryClient = new QueryClient();
 
 function Index() {
   const [lang, setLang] = useStorage('arco-lang', 'en-US');
@@ -46,6 +50,7 @@ function Index() {
       });
     });
   }
+  useGetUserInfo();
 
   useEffect(() => {
     if (checkLogin()) {
@@ -95,4 +100,13 @@ function Index() {
   );
 }
 
-ReactDOM.render(<Index />, document.getElementById('root'));
+function APP() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Index />
+    </QueryClientProvider>
+  );
+}
+
+ReactDOM.render(<APP />, document.getElementById('root'));

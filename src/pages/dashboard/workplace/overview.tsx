@@ -7,7 +7,6 @@ import {
   Skeleton,
   Link,
 } from '@arco-design/web-react';
-import { useSelector } from 'react-redux';
 import { IconCaretUp } from '@arco-design/web-react/icon';
 import OverviewAreaLine from '@/components/Chart/overview-area-line';
 import axios from 'axios';
@@ -17,7 +16,8 @@ import styles from './style/overview.module.less';
 import { ReactComponent as IconCalendar } from './assets/calendar.svg';
 import { ReactComponent as IconComments } from './assets/comments.svg';
 import { ReactComponent as IconContent } from './assets/content.svg';
-import { ReactComponent as IconIncrease }  from './assets/increase.svg';
+import { ReactComponent as IconIncrease } from './assets/increase.svg';
+import { useGetUserInfo } from '@/API/User';
 
 const { Row, Col } = Grid;
 
@@ -61,7 +61,7 @@ function Overview() {
   const [loading, setLoading] = useState(true);
   const t = useLocale(locale);
 
-  const userInfo = useSelector((state: any) => state.userInfo || {});
+  const { data: userInfo } = useGetUserInfo();
 
   const fetchData = () => {
     setLoading(true);

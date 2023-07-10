@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { GlobalState } from '@/store';
-import { useSelector } from 'react-redux';
 import authentication, { AuthParams } from '@/utils/authentication';
+import { useGetUserInfo } from '@/API/User';
 
 type PermissionWrapperProps = AuthParams & {
   backup?: React.ReactNode;
@@ -12,7 +11,7 @@ const PermissionWrapper = (
 ) => {
   const { backup, requiredPermissions, oneOfPerm } = props;
   const [hasPermission, setHasPermission] = useState(false);
-  const userInfo = useSelector((state: GlobalState) => state.userInfo);
+  const { data: userInfo } = useGetUserInfo();
 
   useEffect(() => {
     const hasPermission = authentication(
