@@ -21,7 +21,6 @@ import {
   IconDashboard,
   IconTag,
 } from '@arco-design/web-react/icon';
-import { useDispatch } from 'react-redux';
 import { GlobalContext } from '@/context';
 import useLocale from '@/utils/useLocale';
 import { ReactComponent as Logo } from '@/assets/logo.svg';
@@ -30,13 +29,11 @@ import IconButton from './IconButton';
 import styles from './style/index.module.less';
 import defaultLocale from '@/locale';
 import useStorage from '@/utils/useStorage';
-import { generatePermission } from '@/routes';
 import { useGetUserInfo } from '@/API/user';
 
 function Navbar({ show }: { show: boolean }) {
   const t = useLocale();
   const { data: userInfo } = useGetUserInfo();
-  const dispatch = useDispatch();
 
   const [_, setUserStatus] = useStorage('userStatus');
   const [role, setRole] = useStorage('userRole', 'admin');
@@ -55,18 +52,6 @@ function Navbar({ show }: { show: boolean }) {
       Message.info(`You clicked ${key}`);
     }
   }
-
-  useEffect(() => {
-    dispatch({
-      type: 'update-userInfo',
-      payload: {
-        userInfo: {
-          ...userInfo,
-          permissions: generatePermission(role),
-        },
-      },
-    });
-  }, [role]);
 
   const handleChangeRole = () => {
     const newRole = role === 'admin' ? 'user' : 'admin';

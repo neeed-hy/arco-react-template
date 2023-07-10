@@ -8,7 +8,6 @@ import {
   IconMenuFold,
   IconMenuUnfold,
 } from '@arco-design/web-react/icon';
-import { useSelector } from 'react-redux';
 import qs from 'query-string';
 import NProgress from 'nprogress';
 import Navbar from './components/NavBar';
@@ -18,7 +17,6 @@ import { isArray } from './utils/is';
 import useLocale from './utils/useLocale';
 import getUrlParams from './utils/getUrlParams';
 import lazyload from './utils/lazyload';
-import { GlobalState } from './store';
 import styles from './style/layout.module.less';
 import { useGetUserInfo } from './API/user';
 import settings from './settings.json';
@@ -63,8 +61,7 @@ function PageLayout() {
   const pathname = history.location.pathname;
   const currentComponent = qs.parseUrl(pathname).url.slice(1);
   const locale = useLocale();
-  const { userLoading } = useSelector((state: GlobalState) => state);
-  const { data: userInfo } = useGetUserInfo();
+  const { data: userInfo, isLoading: userLoading } = useGetUserInfo();
 
   const [routes, defaultRoute] = useRoute(userInfo?.permissions);
   const defaultSelectedKeys = [currentComponent || defaultRoute];
