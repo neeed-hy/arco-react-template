@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import svgrPlugin from '@arco-plugins/vite-plugin-svgr';
+import svgr from 'vite-plugin-svgr';
 import vitePluginForArco from '@arco-plugins/vite-react';
 import setting from './src/settings.json';
 
@@ -11,9 +11,7 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    svgrPlugin({
-      svgrOptions: {},
-    }),
+    svgr(),
     vitePluginForArco({
       theme: '@arco-themes/react-arco-pro',
       modifyVars: {

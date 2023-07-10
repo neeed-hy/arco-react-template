@@ -14,10 +14,10 @@ import axios from 'axios';
 import locale from './locale';
 import useLocale from '@/utils/useLocale';
 import styles from './style/overview.module.less';
-import IconCalendar from './assets/calendar.svg';
-import IconComments from './assets/comments.svg';
-import IconContent from './assets/content.svg';
-import IconIncrease from './assets/increase.svg';
+import { ReactComponent as IconCalendar } from './assets/calendar.svg';
+import { ReactComponent as IconComments } from './assets/comments.svg';
+import { ReactComponent as IconContent } from './assets/content.svg';
+import { ReactComponent as IconIncrease }  from './assets/increase.svg';
 
 const { Row, Col } = Grid;
 
