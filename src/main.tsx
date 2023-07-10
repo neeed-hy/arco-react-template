@@ -18,7 +18,7 @@ import useStorage from './utils/useStorage';
 import './mock';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useGetUserInfo } from '@/API/User';
+import { useGetUserInfo } from '@/API/user';
 
 const store = createStore(rootReducer);
 const queryClient = new QueryClient();

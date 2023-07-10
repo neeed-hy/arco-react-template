@@ -17,7 +17,7 @@ import { ReactComponent as IconCalendar } from './assets/calendar.svg';
 import { ReactComponent as IconComments } from './assets/comments.svg';
 import { ReactComponent as IconContent } from './assets/content.svg';
 import { ReactComponent as IconIncrease } from './assets/increase.svg';
-import { useGetUserInfo } from '@/API/User';
+import { useGetUserInfo } from '@/API/user';
 
 const { Row, Col } = Grid;
 

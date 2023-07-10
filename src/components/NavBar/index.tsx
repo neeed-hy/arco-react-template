@@ -34,7 +34,7 @@ import styles from './style/index.module.less';
 import defaultLocale from '@/locale';
 import useStorage from '@/utils/useStorage';
 import { generatePermission } from '@/routes';
-import { useGetUserInfo } from '@/API/User';
+import { useGetUserInfo } from '@/API/user';
 
 function Navbar({ show }: { show: boolean }) {
   const t = useLocale();
