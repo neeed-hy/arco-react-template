@@ -1,6 +1,5 @@
 import { IRes } from '@/types/common';
 import { request } from './request';
-
 import { useQuery } from '@tanstack/react-query';
 
 const getUserinfo = () => {

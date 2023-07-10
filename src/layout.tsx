@@ -20,6 +20,8 @@ import getUrlParams from './utils/getUrlParams';
 import lazyload from './utils/lazyload';
 import { GlobalState } from './store';
 import styles from './style/layout.module.less';
+import { useGetUserInfo } from './API/user';
+import settings from './settings.json';
 
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
@@ -61,9 +63,8 @@ function PageLayout() {
   const pathname = history.location.pathname;
   const currentComponent = qs.parseUrl(pathname).url.slice(1);
   const locale = useLocale();
-  const { settings, userLoading, userInfo } = useSelector(
-    (state: GlobalState) => state
-  );
+  const { userLoading } = useSelector((state: GlobalState) => state);
+  const { data: userInfo } = useGetUserInfo();
 
   const [routes, defaultRoute] = useRoute(userInfo?.permissions);
   const defaultSelectedKeys = [currentComponent || defaultRoute];
