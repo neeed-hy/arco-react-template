@@ -3,8 +3,11 @@ import { useEffect, useMemo, useState } from 'react';
 
 export type IRoute = AuthParams & {
   name: string;
+  // 组件位置。默认情况下也是页面路径地址。
   key: string;
-  // 当前页是否展示面包屑
+  // 显式指定页面路径。推荐只在注册动态的时候使用path，其他时候请使用key默认生成即可。
+  path?: string;
+  // 当前页是否展示面包屑,默认不展示
   breadcrumb?: boolean;
   children?: IRoute[];
   // 当前路由是否渲染菜单项，为 true 的话不会在菜单中显示，但可通过路由地址访问。

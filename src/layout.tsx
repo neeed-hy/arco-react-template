@@ -111,7 +111,7 @@ function PageLayout() {
     routeMap.current.clear();
     return function travel(_routes: IRoute[], level, parentNode = []) {
       return _routes.map((route) => {
-        const { breadcrumb = true, ignore } = route;
+        const { breadcrumb = false, ignore } = route;
         const iconDom = getIconFromKey(route.key);
         const titleDom = (
           <>
