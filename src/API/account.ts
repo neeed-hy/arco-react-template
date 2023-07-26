@@ -43,10 +43,11 @@ export const useCerateAccount = () => {
       const { data } = res;
       if (data.code !== 200) {
         throw data.msg;
+      } else {
+        Message.success({
+          content: '创建用户成功!',
+        });
       }
-      Message.success({
-        content: '创建用户成功!',
-      });
     },
     onError: (err) => {
       console.error(err);
@@ -70,10 +71,11 @@ export const useEditAccount = () => {
       const { data } = res;
       if (data.code !== 200) {
         throw data.msg;
+      } else {
+        Message.success({
+          content: '编辑用户成功!',
+        });
       }
-      Message.success({
-        content: '编辑用户成功!',
-      });
     },
     onError: (err) => {
       console.error(err);
