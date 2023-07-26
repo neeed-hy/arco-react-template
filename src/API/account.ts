@@ -10,6 +10,9 @@ const getAccountList = () => {
 const createNewAccount = (data: CreateAccount) => {
   return request.post<IRes<null>>('/api/account/create', data);
 };
+const editAccount = (data: CreateAccount) => {
+  return request.post<IRes<null>>('/api/account/edit', data);
+};
 
 export const accountApiKey = {
   getAccountList: 'getAccountList',
@@ -42,13 +45,40 @@ export const useCerateAccount = () => {
         throw data.msg;
       }
       Message.success({
-        content: '添加成功!',
+        content: '创建用户成功!',
       });
     },
     onError: (err) => {
       console.error(err);
       Message.error({
-        content: '添加失败，详细信息请查看控制台',
+        content: `创建用户失败：${err}`,
+      });
+    },
+  });
+};
+
+/**
+ * 编辑用户
+ * @returns
+ */
+export const useEditAccount = () => {
+  return useMutation({
+    mutationFn: (data: CreateAccount) => {
+      return editAccount(data);
+    },
+    onSuccess: (res) => {
+      const { data } = res;
+      if (data.code !== 200) {
+        throw data.msg;
+      }
+      Message.success({
+        content: '编辑用户成功!',
+      });
+    },
+    onError: (err) => {
+      console.error(err);
+      Message.error({
+        content: `编辑用户失败：${err}`,
       });
     },
   });

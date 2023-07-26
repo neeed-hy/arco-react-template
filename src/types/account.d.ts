@@ -4,3 +4,4 @@ export interface Account {
 }
 
 export type CreateAccount = Omit<Account, 'id'>;
+export type EditAccount = Account;

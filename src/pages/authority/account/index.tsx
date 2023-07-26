@@ -1,10 +1,12 @@
 import {
   accountApiKey,
   useCerateAccount,
+  useEditAccount,
   useGetAccountList,
 } from '@/API/account';
 import PageContainer from '@/components/PageContainer';
-import { Account, CreateAccount } from '@/types/account';
+import { useEditDrawer } from '@/hooks/useEditDrawer';
+import { Account, CreateAccount, EditAccount } from '@/types/account';
 import {
   Button,
   Divider,
@@ -15,31 +17,59 @@ import {
 } from '@arco-design/web-react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import EditDrawer from './components/EditDrawer';
 
 const AccountManage: React.FC = () => {
   const queryClient = useQueryClient();
   const { data: accountList, isLoading, isError, error } = useGetAccountList();
   const cerateAccountMutation = useCerateAccount();
+  const editAccountMutation = useEditAccount();
 
-  const addBtnClick = () => {
-    console.log('add');
+  const reGetAccountList = () => {
+    queryClient.invalidateQueries([accountApiKey.getAccountList]);
   };
-  const editBtnClick = (data: Account) => {
-    console.log(data);
+  const submitTheData = (data: Account) => {
+    if (!data.id) {
+      createAccount(data);
+    } else {
+      editAccount(data);
+    }
   };
-  const removeBtnClick = (data: Account) => {
-    console.log(data);
-  };
-
   const createAccount = (data: CreateAccount) => {
     cerateAccountMutation.mutate(data, {
       onSuccess: () => {
-        queryClient.invalidateQueries([accountApiKey.getAccountList]);
-      },
-      onSettled: () => {
-        // toggleDrawerVisible(false);
+        reGetAccountList();
       },
     });
+  };
+  const editAccount = (data: EditAccount) => {
+    editAccountMutation.mutate(data, {
+      onSuccess: () => {
+        reGetAccountList();
+      },
+    });
+  };
+  const {
+    setTitle,
+    title,
+    submitData,
+    visible,
+    toggleDrawerVisible,
+    dataToBeEdited,
+    setDataToBeEdited,
+  } = useEditDrawer(submitTheData);
+
+  const addBtnClick = () => {
+    setTitle('创建用户');
+    toggleDrawerVisible(true);
+  };
+  const editBtnClick = (data: Account) => {
+    setTitle('编辑用户');
+    setDataToBeEdited(data);
+    toggleDrawerVisible(true);
+  };
+  const removeBtnClick = (data: Account) => {
+    console.log(data);
   };
 
   const columns: TableColumnProps<Account>[] = [
@@ -96,12 +126,19 @@ const AccountManage: React.FC = () => {
         isLoading={isLoading}
         extra={
           <Button type="primary" onClick={addBtnClick}>
-            添加用户
+            创建用户
           </Button>
         }
       >
         <Table rowKey="id" columns={columns} data={accountList || []} />
       </PageContainer>
+      <EditDrawer
+        title={title}
+        visible={visible}
+        rawData={dataToBeEdited}
+        toggleVisible={toggleDrawerVisible}
+        submitData={submitData}
+      />
     </>
   );
 };
