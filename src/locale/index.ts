@@ -17,6 +17,9 @@ const i18n = {
     'message.empty.tips': 'No Content',
     'message.lang.tips': 'Language switch to ',
     'navbar.search.placeholder': 'Please search',
+    'menu.authority': 'Authority',
+    'menu.authority.account': 'Account Manage',
+    'menu.authority.role': 'Role Manage',
   },
   'zh-CN': {
     'menu.dashboard': '仪表盘',
@@ -36,6 +39,9 @@ const i18n = {
     'message.empty.tips': '暂无内容',
     'message.lang.tips': '语言切换至 ',
     'navbar.search.placeholder': '输入内容查询',
+    'menu.authority': '用户权限',
+    'menu.authority.account': '用户管理',
+    'menu.authority.role': '角色管理',
   },
 };
 

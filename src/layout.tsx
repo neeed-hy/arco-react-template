@@ -7,6 +7,7 @@ import {
   IconTag,
   IconMenuFold,
   IconMenuUnfold,
+  IconUserGroup,
 } from '@arco-design/web-react/icon';
 import qs from 'query-string';
 import NProgress from 'nprogress';
@@ -31,6 +32,8 @@ function getIconFromKey(key) {
   switch (key) {
     case 'dashboard':
       return <IconDashboard className={styles.icon} />;
+    case 'authority':
+      return <IconUserGroup className={styles.icon} />;
     case 'example':
       return <IconTag className={styles.icon} />;
     default:

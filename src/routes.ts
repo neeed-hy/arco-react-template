@@ -26,6 +26,16 @@ export const routes: IRoute[] = [
     ],
   },
   {
+    name: 'menu.authority',
+    key: 'authority',
+    children: [
+      {
+        name: 'menu.authority.account',
+        key: 'authority/account',
+      },
+    ],
+  },
+  {
     name: 'Example',
     key: 'example',
   },
