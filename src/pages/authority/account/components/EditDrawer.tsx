@@ -35,6 +35,7 @@ const EditCompanyDrawer: React.FC<IEditDrawer<Account>> = (props) => {
       width={400}
       title={title}
       visible={visible}
+      maskClosable={false}
       onOk={() => {
         checkData();
       }}
