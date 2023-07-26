@@ -3,6 +3,7 @@ import {
   useCerateAccount,
   useEditAccount,
   useGetAccountList,
+  useRemoveAccount,
 } from '@/API/account';
 import PageContainer from '@/components/PageContainer';
 import { useEditDrawer } from '@/hooks/useEditDrawer';
@@ -24,10 +25,11 @@ const AccountManage: React.FC = () => {
   const { data: accountList, isLoading, isError, error } = useGetAccountList();
   const cerateAccountMutation = useCerateAccount();
   const editAccountMutation = useEditAccount();
-
+  const removeAccountMutation = useRemoveAccount();
   const reGetAccountList = () => {
     queryClient.invalidateQueries([accountApiKey.getAccountList]);
   };
+  
   const submitTheData = (data: Account) => {
     if (!data.id) {
       createAccount(data);
@@ -69,7 +71,12 @@ const AccountManage: React.FC = () => {
     toggleDrawerVisible(true);
   };
   const removeBtnClick = (data: Account) => {
-    console.log(data);
+    const param = { id: data.id };
+    removeAccountMutation.mutate(param, {
+      onSuccess: () => {
+        reGetAccountList();
+      },
+    });
   };
 
   const columns: TableColumnProps<Account>[] = [
