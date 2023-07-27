@@ -29,7 +29,7 @@ const AccountManage: React.FC = () => {
   const reGetAccountList = () => {
     queryClient.invalidateQueries([accountApiKey.getAccountList]);
   };
-  
+
   const submitTheData = (data: Account) => {
     if (!data.id) {
       createAccount(data);
@@ -61,7 +61,7 @@ const AccountManage: React.FC = () => {
     setDataToBeEdited,
   } = useEditDrawer(submitTheData);
 
-  const addBtnClick = () => {
+  const createBtnClickBtnClick = () => {
     setTitle('创建用户');
     toggleDrawerVisible(true);
   };
@@ -132,7 +132,7 @@ const AccountManage: React.FC = () => {
         title="用户管理"
         isLoading={isLoading}
         extra={
-          <Button type="primary" onClick={addBtnClick}>
+          <Button type="primary" onClick={createBtnClickBtnClick}>
             创建用户
           </Button>
         }
