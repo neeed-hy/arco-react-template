@@ -242,7 +242,7 @@ function PageLayout() {
                     return (
                       <Route
                         key={index}
-                        path={`/${route.key}`}
+                        path={`/${route.path || route.key}`}
                         component={route.component}
                       />
                     );
