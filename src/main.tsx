@@ -37,7 +37,7 @@ function Index() {
 }
 
 function APP() {
-  const [lang, setLang] = useStorage('arco-lang', 'en-US');
+  const [lang, setLang] = useStorage('arco-lang', 'zh-CN');
   const [theme, setTheme] = useStorage('arco-theme', 'light');
 
   function getArcoLocale() {
