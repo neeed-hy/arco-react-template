@@ -31,12 +31,6 @@ import { RouteTarget } from '@/utils/routeTarget';
 
 const AccountManage: React.FC = () => {
   const queryClient = useQueryClient();
-  const {
-    data: getAccountListRes,
-    isLoading,
-    isError,
-    error,
-  } = useGetAccountList();
   const cerateAccountMutation = useCerateAccount();
   const editAccountMutation = useEditAccount();
   const removeAccountMutation = useRemoveAccount();
@@ -134,13 +128,6 @@ const AccountManage: React.FC = () => {
       },
     },
   ];
-  useEffect(() => {
-    if (isError) {
-      Message.error('获取用户列表信息失败');
-      console.error(error);
-    }
-  }, [isError, error]);
-
   const history = useHistory();
   const searchParams = new URLSearchParams(location.search);
   const filterData = {
@@ -157,7 +144,6 @@ const AccountManage: React.FC = () => {
         ...newFilterData,
       })
     );
-    console.log(newFilterData);
   };
   const [pagination, setPagination] = useState<PaginationProps>({
     sizeCanChange: true,
@@ -165,23 +151,38 @@ const AccountManage: React.FC = () => {
     pageSizeChangeResetCurrent: true,
     current: filterData.pageNo,
     pageSize: filterData.pageSize,
-    total: 99,
+    total: 0,
   });
+  const {
+    data: getAccountListRes,
+    isLoading,
+    isError,
+    error,
+  } = useGetAccountList(filterData);
   const onChangeTable = (currentPagination: PaginationProps) => {
     const { current, pageSize } = currentPagination;
     history.push(
       RouteTarget.accountList({
+        ...filterData,
         pageSize,
         pageNo: current,
       })
     );
     setPagination({ ...pagination, current, pageSize });
   };
-  // useEffect(() => {
-  //   if (pagination && getAccountListRes) {
-  //     setPagination({ ...pagination, total: getAccountListRes.total });
-  //   }
-  // }, [pagination, getAccountListRes]);
+
+  useEffect(() => {
+    if (pagination && getAccountListRes) {
+      setPagination({ ...pagination, total: getAccountListRes.total });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getAccountListRes]);
+  useEffect(() => {
+    if (isError) {
+      Message.error('获取用户列表信息失败');
+      console.error(error);
+    }
+  }, [isError, error]);
 
   return (
     <>

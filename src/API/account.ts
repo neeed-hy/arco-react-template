@@ -30,12 +30,13 @@ export const accountApiKey = {
  */
 export const useGetAccountList = (params: IGetAccountList) => {
   return useQuery(
-    [accountApiKey.getAccountList],
+    [accountApiKey.getAccountList, params],
     () => getAccountList(params),
     {
       select: (data) => {
         return data.data.data;
       },
+      keepPreviousData: true,
     }
   );
 };

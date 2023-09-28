@@ -1,28 +1,37 @@
 import Mock from 'mockjs';
 import setupMock from '@/utils/setupMock';
 import { Account } from '@/types/account';
-import { successWrap } from './util';
-import { IGetAccountList } from '@/API/account.api';
+import { getUrlParam, successWrap } from './util';
+import { IGetAccountListRes } from '@/API/account.api';
 const Random = Mock.Random;
 
-const mockAccountList = (count: number) => {
+const makeMockAccountList = (count: number) => {
   const dataList: Account[] = [];
   for (let i = 0; i < count; i += 1) {
     dataList.push({
-      id: Number(Random.id()),
+      id: i,
       accountName: i === 0 ? '第一个' : Random.cname(),
     });
   }
-  const result: IGetAccountList = {
-    accountList: dataList,
-    total: count,
-  };
-  return result;
+  return dataList;
 };
+
+const mockAccountList: Account[] = makeMockAccountList(108);
+
 setupMock({
   setup: () => {
-    Mock.mock(new RegExp('/api/account/list'), () => {
-      return successWrap(mockAccountList(10));
+    Mock.mock(new RegExp('/api/account/list'), (option) => {
+      const pageSize = Number(getUrlParam(option, 'pageSize'));
+      const pageNo = Number(getUrlParam(option, 'pageNo'));
+      const dataList = mockAccountList.slice(
+        0 + pageSize * (pageNo - 1),
+        pageSize + pageSize * (pageNo - 1)
+      );
+      const result: IGetAccountListRes = {
+        accountList: dataList,
+        total: mockAccountList.length,
+      };
+      return successWrap(result);
     });
   },
   mock: true,
