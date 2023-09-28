@@ -3,7 +3,7 @@ import { IEditDrawer } from '@/types/common';
 import { Drawer, Form, Input } from '@arco-design/web-react';
 import { useEffect } from 'react';
 
-const EditCompanyDrawer: React.FC<IEditDrawer<Account>> = (props) => {
+const EditAccountDrawer: React.FC<IEditDrawer<Account>> = (props) => {
   const { visible, submitData, toggleVisible, rawData, title } = props;
   const [form] = Form.useForm<Account>();
   const checkData = () => {
@@ -58,4 +58,4 @@ const EditCompanyDrawer: React.FC<IEditDrawer<Account>> = (props) => {
     </Drawer>
   );
 };
-export default EditCompanyDrawer;
+export default EditAccountDrawer;
