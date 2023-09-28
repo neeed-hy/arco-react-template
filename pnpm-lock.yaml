@@ -13,6 +13,7 @@ specifiers:
   '@tanstack/react-query': ^4.29.19
   '@tanstack/react-query-devtools': ^4.29.19
   '@turf/turf': ^6.5.0
+  '@types/lodash': ^4.14.199
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
   '@types/react-router-dom': ^5.3.3
@@ -64,6 +65,7 @@ dependencies:
   '@tanstack/react-query': 4.29.19_sfoxds7t5ydpegc3knd667wn6m
   '@tanstack/react-query-devtools': 4.29.19_zu6es7zz64mq47zsrdtbitk4la
   '@turf/turf': 6.5.0
+  '@types/lodash': 4.14.199
   axios: 0.24.0
   bizcharts: 4.1.22_react@17.0.2
   classnames: 2.3.2
@@ -3380,6 +3382,10 @@ packages:
   /@types/json-schema/7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
     dev: true
+
+  /@types/lodash/4.14.199:
+    resolution: {integrity: sha512-Vrjz5N5Ia4SEzWWgIVwnHNEnb1UE1XMkvY5DGXrAeOGE9imk0hgTHh5GyDjLDJi9OTCn9oo9dXH1uToK1VRfrg==}
+    dev: false
 
   /@types/minimatch/3.0.5:
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
