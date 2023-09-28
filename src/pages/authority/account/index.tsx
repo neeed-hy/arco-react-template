@@ -17,14 +17,17 @@ import {
   Button,
   Divider,
   Message,
+  PaginationProps,
   Popconfirm,
   Table,
   TableColumnProps,
 } from '@arco-design/web-react';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import EditDrawer from './components/EditDrawer';
 import FilterForm from './components/FilterForm';
+import { useHistory } from 'react-router-dom';
+import { RouteTarget } from '@/utils/routeTarget';
 
 const AccountManage: React.FC = () => {
   const queryClient = useQueryClient();
@@ -138,9 +141,48 @@ const AccountManage: React.FC = () => {
     }
   }, [isError, error]);
 
-  const handleFilter = (data: AccountFilter) => {
-    console.log(data);
+  const history = useHistory();
+  const searchParams = new URLSearchParams(location.search);
+  const filterData = {
+    pageNo: Number(searchParams.get('pageNo')) || 1,
+    pageSize: Number(searchParams.get('pageSize')) || 10,
+    accountName: searchParams.get('accountName') || undefined,
   };
+  const handleFilter = (newFilterData: AccountFilter) => {
+    const { pageSize } = pagination;
+    history.push(
+      RouteTarget.accountList({
+        pageSize,
+        pageNo: 1,
+        ...newFilterData,
+      })
+    );
+    console.log(newFilterData);
+  };
+  const [pagination, setPagination] = useState<PaginationProps>({
+    sizeCanChange: true,
+    showTotal: true,
+    pageSizeChangeResetCurrent: true,
+    current: filterData.pageNo,
+    pageSize: filterData.pageSize,
+    total: 99,
+  });
+  const onChangeTable = (currentPagination: PaginationProps) => {
+    const { current, pageSize } = currentPagination;
+    history.push(
+      RouteTarget.accountList({
+        pageSize,
+        pageNo: current,
+      })
+    );
+    setPagination({ ...pagination, current, pageSize });
+  };
+  // useEffect(() => {
+  //   if (pagination && getAccountListRes) {
+  //     setPagination({ ...pagination, total: getAccountListRes.total });
+  //   }
+  // }, [pagination, getAccountListRes]);
+
   return (
     <>
       <PageContainer
@@ -158,6 +200,8 @@ const AccountManage: React.FC = () => {
           rowKey="id"
           columns={columns}
           data={getAccountListRes?.accountList || []}
+          onChange={onChangeTable}
+          pagination={pagination}
         />
       </PageContainer>
       <EditDrawer
