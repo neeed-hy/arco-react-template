@@ -3,10 +3,12 @@ import { request } from './request';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { CreateAccount } from '@/types/account';
 import { Message } from '@arco-design/web-react';
-import { IGetAccountList } from './account.api';
+import { IGetAccountList, IGetAccountListRes } from './account.api';
 
-const getAccountList = () => {
-  return request.get<IRes<IGetAccountList>>(`/api/account/list`);
+const getAccountList = (params: IGetAccountList) => {
+  return request.get<IRes<IGetAccountListRes>>(`/api/account/list`, {
+    params,
+  });
 };
 const createNewAccount = (data: CreateAccount) => {
   return request.post<IRes<null>>('/api/account/create', data);
@@ -26,12 +28,16 @@ export const accountApiKey = {
  * 获取用户列表
  * @returns
  */
-export const useGetAccountList = () => {
-  return useQuery([accountApiKey.getAccountList], () => getAccountList(), {
-    select: (data) => {
-      return data.data.data;
-    },
-  });
+export const useGetAccountList = (params: IGetAccountList) => {
+  return useQuery(
+    [accountApiKey.getAccountList],
+    () => getAccountList(params),
+    {
+      select: (data) => {
+        return data.data.data;
+      },
+    }
+  );
 };
 
 /**
