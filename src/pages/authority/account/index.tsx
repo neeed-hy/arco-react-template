@@ -28,7 +28,12 @@ import FilterForm from './components/FilterForm';
 
 const AccountManage: React.FC = () => {
   const queryClient = useQueryClient();
-  const { data: accountList, isLoading, isError, error } = useGetAccountList();
+  const {
+    data: getAccountListRes,
+    isLoading,
+    isError,
+    error,
+  } = useGetAccountList();
   const cerateAccountMutation = useCerateAccount();
   const editAccountMutation = useEditAccount();
   const removeAccountMutation = useRemoveAccount();
@@ -149,7 +154,11 @@ const AccountManage: React.FC = () => {
       >
         <FilterForm submitFilter={handleFilter} />
         <Divider />
-        <Table rowKey="id" columns={columns} data={accountList || []} />
+        <Table
+          rowKey="id"
+          columns={columns}
+          data={getAccountListRes?.accountList || []}
+        />
       </PageContainer>
       <EditDrawer
         title={title}

@@ -1,11 +1,12 @@
 import { IRes } from '@/types/common';
 import { request } from './request';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Account, CreateAccount } from '@/types/account';
+import { CreateAccount } from '@/types/account';
 import { Message } from '@arco-design/web-react';
+import { IGetAccountList } from './account.api';
 
 const getAccountList = () => {
-  return request.get<IRes<Account[]>>(`/api/account/list`);
+  return request.get<IRes<IGetAccountList>>(`/api/account/list`);
 };
 const createNewAccount = (data: CreateAccount) => {
   return request.post<IRes<null>>('/api/account/create', data);
