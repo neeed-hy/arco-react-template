@@ -7,7 +7,12 @@ import {
 } from '@/API/account';
 import PageContainer from '@/components/PageContainer';
 import { useEditDrawer } from '@/hooks/useEditDrawer';
-import { Account, CreateAccount, EditAccount } from '@/types/account';
+import {
+  Account,
+  AccountFilter,
+  CreateAccount,
+  EditAccount,
+} from '@/types/account';
 import {
   Button,
   Divider,
@@ -19,6 +24,7 @@ import {
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import EditDrawer from './components/EditDrawer';
+import FilterForm from './components/FilterForm';
 
 const AccountManage: React.FC = () => {
   const queryClient = useQueryClient();
@@ -126,6 +132,10 @@ const AccountManage: React.FC = () => {
       console.error(error);
     }
   }, [isError, error]);
+
+  const handleFilter = (data: AccountFilter) => {
+    console.log(data);
+  };
   return (
     <>
       <PageContainer
@@ -137,6 +147,8 @@ const AccountManage: React.FC = () => {
           </Button>
         }
       >
+        <FilterForm submitFilter={handleFilter} />
+        <Divider />
         <Table rowKey="id" columns={columns} data={accountList || []} />
       </PageContainer>
       <EditDrawer
