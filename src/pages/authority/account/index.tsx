@@ -23,7 +23,7 @@ import {
   TableColumnProps,
 } from '@arco-design/web-react';
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import EditDrawer from './components/EditDrawer';
 import FilterForm from './components/FilterForm';
 import { useHistory } from 'react-router-dom';
@@ -135,6 +135,20 @@ const AccountManage: React.FC = () => {
     pageSize: Number(searchParams.get('pageSize')) || 10,
     accountName: searchParams.get('accountName') || undefined,
   };
+  const pagination: PaginationProps = {
+    sizeCanChange: true,
+    showTotal: true,
+    pageSizeChangeResetCurrent: true,
+    current: filterData.pageNo,
+    pageSize: filterData.pageSize,
+  };
+  const {
+    data: getAccountListRes,
+    isLoading,
+    isError,
+    error,
+  } = useGetAccountList(filterData);
+
   const handleFilter = (newFilterData: AccountFilter) => {
     const { pageSize } = pagination;
     history.push(
@@ -145,20 +159,6 @@ const AccountManage: React.FC = () => {
       })
     );
   };
-  const [pagination, setPagination] = useState<PaginationProps>({
-    sizeCanChange: true,
-    showTotal: true,
-    pageSizeChangeResetCurrent: true,
-    current: filterData.pageNo,
-    pageSize: filterData.pageSize,
-    total: 0,
-  });
-  const {
-    data: getAccountListRes,
-    isLoading,
-    isError,
-    error,
-  } = useGetAccountList(filterData);
   const onChangeTable = (currentPagination: PaginationProps) => {
     const { current, pageSize } = currentPagination;
     history.push(
@@ -168,15 +168,8 @@ const AccountManage: React.FC = () => {
         pageNo: current,
       })
     );
-    setPagination({ ...pagination, current, pageSize });
   };
 
-  useEffect(() => {
-    if (pagination && getAccountListRes) {
-      setPagination({ ...pagination, total: getAccountListRes.total });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getAccountListRes]);
   useEffect(() => {
     if (isError) {
       Message.error('获取用户列表信息失败');
@@ -202,7 +195,7 @@ const AccountManage: React.FC = () => {
           columns={columns}
           data={getAccountListRes?.accountList || []}
           onChange={onChangeTable}
-          pagination={pagination}
+          pagination={{ ...pagination, total: getAccountListRes?.total || 0 }}
         />
       </PageContainer>
       <EditDrawer
