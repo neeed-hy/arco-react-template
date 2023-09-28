@@ -1,16 +1,18 @@
 import Mock from 'mockjs';
 import setupMock from '@/utils/setupMock';
 import { Account } from '@/types/account';
+const Random = Mock.Random;
+
 const mockAccountList = () => {
   const result: Account[] = [];
   result.push(
     {
-      id: 1,
-      accountName: '第一个',
+      id: Number(Random.id()),
+      accountName: Random.cname(),
     },
     {
-      id: 2,
-      accountName: '第二个',
+      id: Number(Random.id()),
+      accountName: Random.cname(),
     }
   );
   return {
