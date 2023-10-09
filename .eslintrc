@@ -30,11 +30,14 @@
   "plugins": [
     "react",
     "babel",
+    "simple-import-sort",
     "@typescript-eslint/eslint-plugin",
     "@tanstack/eslint-plugin-query"
   ],
   "rules": {
     "react/display-name": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
   }
 }

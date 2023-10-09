@@ -1,19 +1,20 @@
-import React from 'react';
 import {
-  Link,
   Card,
   Divider,
+  Link,
   Message,
   Typography,
 } from '@arco-design/web-react';
 import {
   IconFile,
-  IconStorage,
-  IconSettings,
-  IconMobile,
   IconFire,
+  IconMobile,
+  IconSettings,
+  IconStorage,
 } from '@arco-design/web-react/icon';
+
 import useLocale from '@/utils/useLocale';
+
 import locale from './locale';
 import styles from './style/shortcuts.module.less';
 

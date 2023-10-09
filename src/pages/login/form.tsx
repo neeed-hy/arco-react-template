@@ -1,17 +1,19 @@
 import {
+  Button,
+  Checkbox,
   Form,
   Input,
-  Checkbox,
   Link,
-  Button,
   Space,
 } from '@arco-design/web-react';
 import { FormInstance } from '@arco-design/web-react/es/Form';
 import { IconLock, IconUser } from '@arco-design/web-react/icon';
-import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import useStorage from '@/utils/useStorage';
+import { useEffect, useRef, useState } from 'react';
+
 import useLocale from '@/utils/useLocale';
+import useStorage from '@/utils/useStorage';
+
 import locale from './locale';
 import styles from './style/index.module.less';
 

@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
-import Footer from '@/components/Footer';
+import { useEffect } from 'react';
+
 import { ReactComponent as Logo } from '@/assets/logo.svg';
-import LoginForm from './form';
+import Footer from '@/components/Footer';
+
 import LoginBanner from './banner';
+import LoginForm from './form';
 import styles from './style/index.module.less';
 
 function Login() {

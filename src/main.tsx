@@ -1,20 +1,23 @@
 import './style/global.less';
-import { useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { ConfigProvider } from '@arco-design/web-react';
-import zhCN from '@arco-design/web-react/es/locale/zh-CN';
-import enUS from '@arco-design/web-react/es/locale/en-US';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import PageLayout from './layout';
-import { GlobalContext } from './context';
-import Login from './pages/login';
-import checkLogin from './utils/checkLogin';
-import changeTheme from './utils/changeTheme';
-import useStorage from './utils/useStorage';
 import './mock';
+
+import { ConfigProvider } from '@arco-design/web-react';
+import enUS from '@arco-design/web-react/es/locale/en-US';
+import zhCN from '@arco-design/web-react/es/locale/zh-CN';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route,Switch } from 'react-router-dom';
+
 import { useGetUserInfo } from '@/API/user';
+
+import { GlobalContext } from './context';
+import PageLayout from './layout';
+import Login from './pages/login';
+import changeTheme from './utils/changeTheme';
+import checkLogin from './utils/checkLogin';
+import useStorage from './utils/useStorage';
 
 const queryClient = new QueryClient();
 

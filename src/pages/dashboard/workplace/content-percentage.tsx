@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import { Card, Spin, Typography } from '@arco-design/web-react';
-import { DonutChart } from 'bizcharts';
 import axios from 'axios';
+import { DonutChart } from 'bizcharts';
+import { useEffect, useState } from 'react';
+
 import useLocale from '@/utils/useLocale';
+
 import locale from './locale';
 
 function PopularContent() {

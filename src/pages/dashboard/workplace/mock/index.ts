@@ -1,5 +1,6 @@
 import Mock from 'mockjs';
 import qs from 'query-string';
+
 import setupMock from '@/utils/setupMock';
 
 setupMock({

@@ -1,13 +1,13 @@
-import React from 'react';
 import {
-  List,
   Avatar,
-  Typography,
   Button,
-  Space,
+  List,
   Result,
+  Space,
   Tag,
+  Typography,
 } from '@arco-design/web-react';
+
 import useLocale from '../../utils/useLocale';
 import styles from './style/index.module.less';
 

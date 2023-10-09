@@ -1,14 +1,15 @@
-import React from 'react';
+import './mock';
+
 import { Grid, Space } from '@arco-design/web-react';
-import Overview from './overview';
-import PopularContents from './popular-contents';
-import ContentPercentage from './content-percentage';
-import Shortcuts from './shortcuts';
+
 import Announcement from './announcement';
 import Carousel from './carousel';
+import ContentPercentage from './content-percentage';
 import Docs from './docs';
+import Overview from './overview';
+import PopularContents from './popular-contents';
+import Shortcuts from './shortcuts';
 import styles from './style/index.module.less';
-import './mock';
 
 const { Row, Col } = Grid;
 

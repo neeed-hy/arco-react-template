@@ -1,23 +1,25 @@
-import React, { useState, useEffect, ReactNode } from 'react';
 import {
-  Grid,
   Card,
-  Typography,
   Divider,
-  Skeleton,
+  Grid,
   Link,
+  Skeleton,
+  Typography,
 } from '@arco-design/web-react';
 import { IconCaretUp } from '@arco-design/web-react/icon';
-import OverviewAreaLine from '@/components/Chart/overview-area-line';
 import axios from 'axios';
-import locale from './locale';
+import { ReactNode, useEffect, useState } from 'react';
+
+import { useGetUserInfo } from '@/API/user';
+import OverviewAreaLine from '@/components/Chart/overview-area-line';
 import useLocale from '@/utils/useLocale';
-import styles from './style/overview.module.less';
+
 import { ReactComponent as IconCalendar } from './assets/calendar.svg';
 import { ReactComponent as IconComments } from './assets/comments.svg';
 import { ReactComponent as IconContent } from './assets/content.svg';
 import { ReactComponent as IconIncrease } from './assets/increase.svg';
-import { useGetUserInfo } from '@/API/user';
+import locale from './locale';
+import styles from './style/overview.module.less';
 
 const { Row, Col } = Grid;
 

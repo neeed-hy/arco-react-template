@@ -1,5 +1,5 @@
-import React from 'react';
-import { Typography, Card } from '@arco-design/web-react';
+import { Card,Typography } from '@arco-design/web-react';
+
 
 function Example() {
   return (

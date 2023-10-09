@@ -1,9 +1,11 @@
-import { IRes } from '@/types/common';
-import { request } from './request';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { CreateAccount } from '@/types/account';
 import { Message } from '@arco-design/web-react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+
+import { CreateAccount } from '@/types/account';
+import { IRes } from '@/types/common';
+
 import { IGetAccountList, IGetAccountListRes } from './account.api';
+import { request } from './request';
 
 const getAccountList = (params: IGetAccountList) => {
   return request.get<IRes<IGetAccountListRes>>(`/api/account/list`, {

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Chart, Line, Axis, Area, Tooltip } from 'bizcharts';
 import { Spin } from '@arco-design/web-react';
+import { Area, Axis, Chart, Line, Tooltip } from 'bizcharts';
+
 import CustomTooltip from './customer-tooltip';
 
 function OverviewAreaLine({

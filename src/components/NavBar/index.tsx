@@ -1,35 +1,37 @@
-import React, { useContext, useEffect } from 'react';
 import {
-  Tooltip,
-  Input,
   Avatar,
-  Select,
-  Dropdown,
-  Menu,
   Divider,
+  Dropdown,
+  Input,
+  Menu,
   Message,
+  Select,
+  Tooltip,
 } from '@arco-design/web-react';
 import {
-  IconLanguage,
-  IconNotification,
-  IconSunFill,
-  IconMoonFill,
-  IconUser,
-  IconSettings,
-  IconPoweroff,
-  IconExperiment,
   IconDashboard,
+  IconExperiment,
+  IconLanguage,
+  IconMoonFill,
+  IconNotification,
+  IconPoweroff,
+  IconSettings,
+  IconSunFill,
   IconTag,
+  IconUser,
 } from '@arco-design/web-react/icon';
-import { GlobalContext } from '@/context';
-import useLocale from '@/utils/useLocale';
+import { useContext } from 'react';
+
+import { useGetUserInfo } from '@/API/user';
 import { ReactComponent as Logo } from '@/assets/logo.svg';
 import MessageBox from '@/components/MessageBox';
+import { GlobalContext } from '@/context';
+import defaultLocale from '@/locale';
+import useLocale from '@/utils/useLocale';
+import useStorage from '@/utils/useStorage';
+
 import IconButton from './IconButton';
 import styles from './style/index.module.less';
-import defaultLocale from '@/locale';
-import useStorage from '@/utils/useStorage';
-import { useGetUserInfo } from '@/API/user';
 
 function Navbar({ show }: { show: boolean }) {
   const t = useLocale();

@@ -1,8 +1,10 @@
 import Mock from 'mockjs';
-import setupMock from '@/utils/setupMock';
-import { Account } from '@/types/account';
-import { getUrlParam, successWrap } from './util';
+
 import { IGetAccountListRes } from '@/API/account.api';
+import { Account } from '@/types/account';
+import setupMock from '@/utils/setupMock';
+
+import { getUrlParam, successWrap } from './util';
 const Random = Mock.Random;
 
 const makeMockAccountList = (count: number) => {

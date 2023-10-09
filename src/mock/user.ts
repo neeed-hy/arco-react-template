@@ -1,7 +1,8 @@
 import Mock from 'mockjs';
+
+import { generatePermission } from '@/routes';
 import { isSSR } from '@/utils/is';
 import setupMock from '@/utils/setupMock';
-import { generatePermission } from '@/routes';
 
 if (!isSSR) {
   Mock.XHR.prototype.withCredentials = true;

@@ -1,4 +1,5 @@
 import Mock from 'mockjs';
+
 import setupMock from '@/utils/setupMock';
 
 const haveReadIds = [];

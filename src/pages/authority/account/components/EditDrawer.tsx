@@ -1,7 +1,8 @@
-import { Account } from '@/types/account';
-import { IEditDrawer } from '@/types/common';
 import { Drawer, Form, Input } from '@arco-design/web-react';
 import { useEffect } from 'react';
+
+import { Account } from '@/types/account';
+import { IEditDrawer } from '@/types/common';
 
 const EditAccountDrawer: React.FC<IEditDrawer<Account>> = (props) => {
   const { visible, submitData, toggleVisible, rawData, title } = props;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import authentication, { AuthParams } from '@/utils/authentication';
+
 import { useGetUserInfo } from '@/API/user';
+import authentication, { AuthParams } from '@/utils/authentication';
 
 type PermissionWrapperProps = AuthParams & {
   backup?: React.ReactNode;

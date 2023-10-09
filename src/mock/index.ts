@@ -1,9 +1,10 @@
-import Mock from 'mockjs';
-import { isSSR } from '@/utils/is';
-
 import './user';
 import './message-box';
 import './account';
+
+import Mock from 'mockjs';
+
+import { isSSR } from '@/utils/is';
 
 if (!isSSR) {
   Mock.setup({

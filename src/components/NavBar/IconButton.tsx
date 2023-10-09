@@ -1,7 +1,8 @@
-import React, { forwardRef } from 'react';
 import { Button } from '@arco-design/web-react';
-import styles from './style/icon-button.module.less';
 import cs from 'classnames';
+import { forwardRef } from 'react';
+
+import styles from './style/icon-button.module.less';
 
 function IconButton(props, ref) {
   const { icon, className, ...rest } = props;
