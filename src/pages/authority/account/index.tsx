@@ -51,6 +51,7 @@ const AccountManage: React.FC = () => {
     cerateAccountMutation.mutate(data, {
       onSuccess: () => {
         reGetAccountList();
+        toggleDrawerVisible(false);
       },
     });
   };
@@ -58,6 +59,7 @@ const AccountManage: React.FC = () => {
     editAccountMutation.mutate(data, {
       onSuccess: () => {
         reGetAccountList();
+        toggleDrawerVisible(false);
       },
     });
   };
