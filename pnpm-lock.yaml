@@ -34,6 +34,7 @@ specifiers:
   eslint-plugin-react-hooks: ^4.3.0
   eslint-plugin-simple-import-sort: ^10.0.0
   husky: ^7.0.2
+  ky: ^1.0.1
   less: ^4.1.2
   less-loader: 7.3.0
   lint-staged: ^13.1.0
@@ -74,6 +75,7 @@ dependencies:
   classnames: 2.3.2
   copy-to-clipboard: 3.3.3
   dayjs: 1.11.9
+  ky: 1.0.1
   lodash: 4.17.21
   mockjs: 1.1.0
   nprogress: 0.2.0
@@ -5691,6 +5693,11 @@ packages:
   /known-css-properties/0.26.0:
     resolution: {integrity: sha512-5FZRzrZzNTBruuurWpvZnvP9pum+fe0HcK8z/ooo+U+Hmp4vtbyp1/QDsqmufirXy4egGzbaH/y2uCZf+6W5Kg==}
     dev: true
+
+  /ky/1.0.1:
+    resolution: {integrity: sha512-UvcwpQO0LOuZwG0Ti3VDo6w57KYt+r4bWEYlNaMt82hgyFtse86QtOGum1RzsZni31FndXQl6NvtDArfunt2JQ==}
+    engines: {node: '>=18'}
+    dev: false
 
   /lazy-cache/1.0.4:
     resolution: {integrity: sha1-odePw6UEdMuAhF07O24dpJpEbo4=}
