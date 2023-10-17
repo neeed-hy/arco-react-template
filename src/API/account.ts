@@ -1,25 +1,40 @@
 import { Message } from '@arco-design/web-react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { CreateAccount } from '@/types/account';
+import { Account, CreateAccount } from '@/types/account';
 import { IRes } from '@/types/common';
+import { getHasValue } from '@/utils/routeTarget';
 
 import { IGetAccountList, IGetAccountListRes } from './account.api';
 import { request } from './request';
 
 const getAccountList = (params: IGetAccountList) => {
-  return request.get<IRes<IGetAccountListRes>>(`/api/account/list`, {
-    params,
-  });
+  return request
+    .get('/api/account/list', {
+      searchParams: new URLSearchParams(getHasValue(params)),
+    })
+    .json<IRes<IGetAccountListRes>>();
 };
 const createNewAccount = (data: CreateAccount) => {
-  return request.post<IRes<null>>('/api/account/create', data);
+  return request
+    .post('/api/account/create', {
+      json: data,
+    })
+    .json<IRes<Account>>();
 };
 const editAccount = (data: CreateAccount) => {
-  return request.post<IRes<null>>('/api/account/edit', data);
+  return request
+    .post('/api/account/edit', {
+      json: data,
+    })
+    .json<IRes<Account>>();
 };
 const removeAccount = (data: { id: number }) => {
-  return request.post<IRes<null>>('/api/account/remove', data);
+  return request
+    .post('/api/account/remove', {
+      json: data,
+    })
+    .json<IRes<Account>>();
 };
 
 export const accountApiKey = {
@@ -36,7 +51,7 @@ export const useGetAccountList = (params: IGetAccountList) => {
     () => getAccountList(params),
     {
       select: (data) => {
-        return data.data.data;
+        return data.data;
       },
       keepPreviousData: true,
     }
@@ -53,9 +68,8 @@ export const useCerateAccount = () => {
       return createNewAccount(data);
     },
     onSuccess: (res) => {
-      const { data } = res;
-      if (data.code !== 200) {
-        throw data.msg;
+      if (res.code !== 200) {
+        throw res.msg;
       } else {
         Message.success({
           content: '创建用户成功!',
@@ -81,9 +95,8 @@ export const useEditAccount = () => {
       return editAccount(data);
     },
     onSuccess: (res) => {
-      const { data } = res;
-      if (data.code !== 200) {
-        throw data.msg;
+      if (res.code !== 200) {
+        throw res.msg;
       } else {
         Message.success({
           content: '编辑用户成功!',
@@ -108,9 +121,8 @@ export const useRemoveAccount = () => {
       return removeAccount(data);
     },
     onSuccess: (res) => {
-      const { data } = res;
-      if (data.code !== 200) {
-        throw data.msg;
+      if (res.code !== 200) {
+        throw res.msg;
       } else {
         Message.success({
           content: '删除用户成功!',

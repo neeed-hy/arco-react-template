@@ -18,6 +18,7 @@ import {
   useGetAccountList,
   useRemoveAccount,
 } from '@/API/account';
+import { IGetAccountListRes } from '@/API/account.api';
 import PageContainer from '@/components/PageContainer';
 import { useEditDrawer } from '@/hooks/useEditDrawer';
 import {
@@ -26,6 +27,7 @@ import {
   CreateAccount,
   EditAccount,
 } from '@/types/account';
+import { IRes } from '@/types/common';
 import { RouteTarget } from '@/utils/routeTarget';
 
 import EditDrawer from './components/EditDrawer';
@@ -37,7 +39,7 @@ const AccountManage: React.FC = () => {
   const editAccountMutation = useEditAccount();
   const removeAccountMutation = useRemoveAccount();
   const reGetAccountList = () => {
-    queryClient.invalidateQueries([accountApiKey.getAccountList]);
+    queryClient.invalidateQueries([accountApiKey.getAccountList, filterData]);
   };
 
   const submitTheData = (data: Account) => {
@@ -58,7 +60,24 @@ const AccountManage: React.FC = () => {
   const editAccount = (data: EditAccount) => {
     editAccountMutation.mutate(data, {
       onSuccess: () => {
-        reGetAccountList();
+        // reGetAccountList();
+        // Updates From Mutation Responses
+        queryClient.setQueryData(
+          [accountApiKey.getAccountList, filterData],
+          (oldData: IRes<IGetAccountListRes>) => {
+            const accountList = oldData.data.accountList;
+            const newAccountList = accountList.map((item) => {
+              return item.id === data.id ? data : item;
+            });
+            return {
+              ...oldData,
+              data: {
+                ...oldData.data,
+                accountList: newAccountList,
+              },
+            };
+          }
+        );
         toggleDrawerVisible(false);
       },
     });

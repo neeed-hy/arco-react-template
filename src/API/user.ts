@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
+// 默认的mockjs不能拦截fetch，因此在mock阶段需使用axios；后续解决这个问题
+import axios from 'axios';
 
 import { IRes } from '@/types/common';
 
-import { request } from './request';
-
 const getUserinfo = () => {
-  return request.get<IRes<UserInfo>>(`/api/user/userInfo`);
+  return axios.get<IRes<UserInfo>>(`/api/user/userInfo`);
 };
 
 export const userApiKey = {

@@ -1,4 +1,9 @@
-function getHasValue(param: Record<string, any>) {
+/**
+ * 去掉searchParam中的 `undefined` `null` `NaN` 等值
+ * @param param
+ * @returns
+ */
+export function getHasValue(param: Record<string, any>) {
   const hasValue = {};
   Object.keys(param).forEach((key) => {
     const value = param[key];

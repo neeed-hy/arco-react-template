@@ -63,5 +63,6 @@ if (!isSSR) {
         };
       });
     },
+    mock: true,
   });
 }
