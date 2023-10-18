@@ -17,16 +17,6 @@ export type IRoute = AuthParams & {
 
 export const routes: IRoute[] = [
   {
-    name: 'menu.dashboard',
-    key: 'dashboard',
-    children: [
-      {
-        name: 'menu.dashboard.workplace',
-        key: 'dashboard/workplace',
-      },
-    ],
-  },
-  {
     name: 'menu.authority',
     key: 'authority',
     children: [

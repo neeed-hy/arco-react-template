@@ -1,7 +1,5 @@
 const i18n = {
   'en-US': {
-    'menu.dashboard': 'Dashboard',
-    'menu.dashboard.workplace': 'Workplace',
     'menu.user.info': 'User Info',
     'menu.user.setting': 'User Setting',
     'menu.user.switchRoles': 'Switch Roles',
@@ -22,8 +20,6 @@ const i18n = {
     'menu.authority.role': 'Role Manage',
   },
   'zh-CN': {
-    'menu.dashboard': '仪表盘',
-    'menu.dashboard.workplace': '工作台',
     'menu.user.info': '用户信息',
     'menu.user.setting': '用户设置',
     'menu.user.switchRoles': '切换角色',
