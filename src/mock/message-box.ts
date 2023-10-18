@@ -1,6 +1,8 @@
-import Mock from 'mockjs';
+import HttpRequestMock from 'http-request-mock';
 
 import setupMock from '@/utils/setupMock';
+
+const mocker = HttpRequestMock.setup();
 
 const haveReadIds = [];
 const getMessageList = () => {
@@ -87,14 +89,20 @@ const getMessageList = () => {
 
 setupMock({
   setup: () => {
-    Mock.mock(new RegExp('/api/message/list'), () => {
-      return getMessageList();
+    mocker.mock({
+      url: new RegExp('/api/message/list'),
+      body: () => getMessageList(),
     });
 
-    Mock.mock(new RegExp('/api/message/read'), (params) => {
-      const { ids } = JSON.parse(params.body);
-      haveReadIds.push(...(ids || []));
-      return true;
+    mocker.mock({
+      url: new RegExp('/api/message/read'),
+      method: 'POST',
+      response(requestInfo) {
+        console.log(requestInfo);
+        const { ids } = requestInfo.body;
+        haveReadIds.push(...(ids || []));
+        return true;
+      },
     });
   },
 });

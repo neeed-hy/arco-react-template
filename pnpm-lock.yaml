@@ -14,7 +14,6 @@ specifiers:
   '@tanstack/react-query-devtools': ^4.29.19
   '@turf/turf': ^6.5.0
   '@types/lodash': ^4.14.199
-  '@types/mockjs': ^1.0.8
   '@types/node': ^20.8.6
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
@@ -41,7 +40,6 @@ specifiers:
   less-loader: 7.3.0
   lint-staged: ^13.1.0
   lodash: ^4.17.21
-  mockjs: ^1.1.0
   nprogress: ^0.2.0
   postcss-less: '4'
   prettier: ^2.4.1
@@ -71,7 +69,6 @@ dependencies:
   '@tanstack/react-query-devtools': 4.29.19_zu6es7zz64mq47zsrdtbitk4la
   '@turf/turf': 6.5.0
   '@types/lodash': 4.14.199
-  '@types/mockjs': 1.0.8
   axios: 0.24.0
   bizcharts: 4.1.22_react@17.0.2
   classnames: 2.3.2
@@ -79,7 +76,6 @@ dependencies:
   dayjs: 1.11.9
   ky: 1.0.1
   lodash: 4.17.21
-  mockjs: 1.1.0
   nprogress: 0.2.0
   query-string: 6.14.1
   react: 17.0.2
@@ -3418,10 +3414,6 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/mockjs/1.0.8:
-    resolution: {integrity: sha512-20t7Fcx3QPbv4wPGeZ0SFOz1l51W3fO3dtO5Ed8KhkUjJ2VsKLRwhgV12lTvQmHnmkJ99ziH0mDmIOrbe8Gs6A==}
-    dev: false
-
   /@types/node/16.18.38:
     resolution: {integrity: sha512-6sfo1qTulpVbkxECP+AVrHV9OoJqhzCsfTNp5NIG+enM4HyM3HvZCO798WShIXBN0+QtDIcutJCjsVYnQP5rIQ==}
     dev: false
@@ -4201,11 +4193,6 @@ packages:
     resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
     engines: {node: '>=14'}
     dev: true
-
-  /commander/11.0.0:
-    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
-    engines: {node: '>=16'}
-    dev: false
 
   /commander/2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
@@ -6080,13 +6067,6 @@ packages:
     dependencies:
       minimist: 1.2.8
     dev: true
-
-  /mockjs/1.1.0:
-    resolution: {integrity: sha512-eQsKcWzIaZzEZ07NuEyO4Nw65g0hdWAyurVol1IPl1gahRwY+svqzfgfey8U8dahLwG44d6/RwEzuK52rSa/JQ==}
-    hasBin: true
-    dependencies:
-      commander: 11.0.0
-    dev: false
 
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
