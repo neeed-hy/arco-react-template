@@ -12,9 +12,10 @@ import {
   IconFile,
   IconMessage,
 } from '@arco-design/web-react/icon';
-import axios from 'axios';
 import groupBy from 'lodash/groupBy';
 import { useEffect, useState } from 'react';
+
+import { request } from '@/API/request';
 
 import useLocale from '../../utils/useLocale';
 import MessageList, { MessageListType } from './list';
@@ -30,10 +31,11 @@ function DropContent() {
 
   function fetchSourceData(showLoading = true) {
     showLoading && setLoading(true);
-    axios
+    request
       .get('/api/message/list')
+      .json<MessageListType>()
       .then((res) => {
-        setSourceData(res.data);
+        setSourceData(res);
       })
       .finally(() => {
         showLoading && setLoading(false);
@@ -42,9 +44,9 @@ function DropContent() {
 
   function readMessage(data: MessageListType) {
     const ids = data.map((item) => item.id);
-    axios
+    request
       .post('/api/message/read', {
-        ids,
+        json: { ids },
       })
       .then(() => {
         fetchSourceData();
