@@ -1,18 +1,20 @@
-import Mock from 'mockjs';
+import HttpRequestMock from 'http-request-mock';
 
 import { generatePermission } from '@/routes';
 import { isSSR } from '@/utils/is';
 import setupMock from '@/utils/setupMock';
 
-if (!isSSR) {
-  Mock.XHR.prototype.withCredentials = true;
+const mocker = HttpRequestMock.setup();
+const faker = HttpRequestMock.faker;
 
+if (!isSSR) {
   setupMock({
     setup: () => {
       // 用户信息
       const userRole = window.localStorage.getItem('userRole') || 'admin';
-      Mock.mock(new RegExp('/api/user/userInfo'), () => {
-        return Mock.mock({
+      mocker.mock({
+        url: new RegExp('/api/user/userInfo'),
+        body: {
           code: 200,
           msg: '',
           data: {
@@ -31,36 +33,25 @@ if (!isSSR) {
             verified: true,
             phoneNumber: /177[*]{6}[0-9]{2}/,
             accountId: /[a-z]{4}[-][0-9]{8}/,
-            registrationTime: Mock.Random.datetime('yyyy-MM-dd HH:mm:ss'),
+            registrationTime: faker.datetime(Date.now()),
             permissions: generatePermission(userRole),
           },
-        });
+        },
       });
-
-      // 登录
-      Mock.mock(new RegExp('/api/user/login'), (params) => {
-        const { userName, password } = JSON.parse(params.body);
-        if (!userName) {
+      mocker.mock({
+        url: new RegExp('/api/user/login'),
+        response(requestInfo) {
+          const { userName, password } = requestInfo.body;
+          if (userName === 'admin' && password === 'admin') {
+            return {
+              status: 'ok',
+            };
+          }
           return {
             status: 'error',
-            msg: '用户名不能为空',
+            msg: '账号或者密码错误',
           };
-        }
-        if (!password) {
-          return {
-            status: 'error',
-            msg: '密码不能为空',
-          };
-        }
-        if (userName === 'admin' && password === 'admin') {
-          return {
-            status: 'ok',
-          };
-        }
-        return {
-          status: 'error',
-          msg: '账号或者密码错误',
-        };
+        },
       });
     },
     mock: true,
