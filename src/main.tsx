@@ -8,7 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route,Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { useGetUserInfo } from '@/API/user';
 
@@ -20,6 +20,16 @@ import checkLogin from './utils/checkLogin';
 import useStorage from './utils/useStorage';
 
 const queryClient = new QueryClient();
+
+if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const { worker } = await import('./mocks/browser');
+  worker.start({
+    // 对于没有 mock 的接口直接通过，避免异常
+    onUnhandledRequest: 'bypass',
+  });
+}
 
 function Index() {
   useGetUserInfo();
