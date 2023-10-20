@@ -19,19 +19,30 @@ const makeMockAccountList = (count: number) => {
 };
 const mockAccountList = makeMockAccountList(108);
 
-export const accountHandlers = [
-  rest.get(new RegExp('/api/account/list'), (req, res, ctx) => {
-    const queryParam = qs.parseUrl(req.url.href).query;
-    const pageSize = Number(queryParam.pageSize);
-    const pageNo = Number(queryParam.pageNo);
-    const dataList = mockAccountList.slice(
-      0 + pageSize * (pageNo - 1),
-      pageSize + pageSize * (pageNo - 1)
-    );
-    const result: IGetAccountListRes = {
-      accountList: dataList,
-      total: mockAccountList.length,
-    };
-    return res(ctx.delay(1000), ctx.json(successWrap(result)));
-  }),
+const mockTrigger = true;
+
+const handler = [
+  {
+    mockTrigger,
+    handler: rest.get(new RegExp('/api/account/list'), (req, res, ctx) => {
+      const queryParam = qs.parseUrl(req.url.href).query;
+      const pageSize = Number(queryParam.pageSize);
+      const pageNo = Number(queryParam.pageNo);
+      const dataList = mockAccountList.slice(
+        0 + pageSize * (pageNo - 1),
+        pageSize + pageSize * (pageNo - 1)
+      );
+      const result: IGetAccountListRes = {
+        accountList: dataList,
+        total: mockAccountList.length,
+      };
+      return res(ctx.delay(1000), ctx.json(successWrap(result)));
+    }),
+  },
 ];
+
+export const accountHandlers = mockTrigger
+  ? handler
+      .filter((item) => item.mockTrigger === true)
+      .map((item) => item.handler)
+  : [];
