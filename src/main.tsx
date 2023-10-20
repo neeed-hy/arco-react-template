@@ -1,5 +1,4 @@
 import './style/global.less';
-import './mock';
 
 import { ConfigProvider } from '@arco-design/web-react';
 import enUS from '@arco-design/web-react/es/locale/en-US';
