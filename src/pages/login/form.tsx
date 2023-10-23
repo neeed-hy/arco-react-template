@@ -8,14 +8,20 @@ import {
 } from '@arco-design/web-react';
 import { FormInstance } from '@arco-design/web-react/es/Form';
 import { IconLock, IconUser } from '@arco-design/web-react/icon';
-import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 
+import { request } from '@/API/request';
+import { IRes } from '@/types/common';
 import useLocale from '@/utils/useLocale';
 import useStorage from '@/utils/useStorage';
 
 import locale from './locale';
 import styles from './style/index.module.less';
+
+interface ILoginRes {
+  status: string;
+  msg: string;
+}
 
 export default function LoginForm() {
   const formRef = useRef<FormInstance>();
@@ -44,8 +50,11 @@ export default function LoginForm() {
   function login(params) {
     setErrorMessage('');
     setLoading(true);
-    axios
-      .post('/api/user/login', params)
+    request
+      .post('/api/user/login', {
+        json: params,
+      })
+      .json<IRes<ILoginRes>>()
       .then((res) => {
         const { status, msg } = res.data;
         if (status === 'ok') {

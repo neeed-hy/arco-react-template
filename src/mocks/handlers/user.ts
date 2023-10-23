@@ -35,6 +35,24 @@ const handler = [
       return res(ctx.delay(1000), ctx.json(successWrap(result)));
     }),
   },
+  {
+    mockTrigger,
+    handler: rest.post(new RegExp('/api/user/login'), async (req, res, ctx) => {
+      let result = {};
+      const { userName, password } = await req.json();
+      if (userName === 'admin' && password === 'admin') {
+        result = {
+          status: 'ok',
+        };
+      } else {
+        result = {
+          status: 'error',
+          msg: '账号或者密码错误',
+        };
+      }
+      return res(ctx.json(successWrap(result)));
+    }),
+  },
 ];
 
 export const userHandlers = mockTrigger

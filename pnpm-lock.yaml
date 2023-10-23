@@ -18,7 +18,6 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.4.0
   '@typescript-eslint/parser': ^5.4.0
   '@vitejs/plugin-react': ^3.0.0
-  axios: ^0.24.0
   classnames: ^2.3.1
   copy-to-clipboard: ^3.3.3
   dayjs: ^1.11.9
@@ -61,7 +60,6 @@ dependencies:
   '@loadable/component': 5.15.3_react@17.0.2
   '@tanstack/react-query': 4.29.19_sfoxds7t5ydpegc3knd667wn6m
   '@tanstack/react-query-devtools': 4.29.19_zu6es7zz64mq47zsrdtbitk4la
-  axios: 0.24.0
   classnames: 2.3.2
   copy-to-clipboard: 3.3.3
   dayjs: 1.11.9
@@ -1324,14 +1322,6 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /axios/0.24.0:
-    resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
-    dependencies:
-      follow-redirects: 1.15.2
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
   /b-tween/0.3.3:
     resolution: {integrity: sha512-oEHegcRpA7fAuc9KC4nktucuZn2aS8htymCPcP3qkEGPqiBH+GfqtqoG2l7LxHngg6O0HFM7hOeOYExl1Oz4ZA==}
     dev: false
@@ -2244,16 +2234,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       tslib: 2.6.0
-    dev: false
-
-  /follow-redirects/1.15.2:
-    resolution: {integrity: sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
     dev: false
 
   /for-each/0.3.3:
