@@ -1,6 +1,7 @@
 import vitePluginForArco from '@arco-plugins/vite-react';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import checker from 'vite-plugin-checker';
 import svgr from 'vite-plugin-svgr';
 
 import setting from './src/settings.json';
@@ -21,6 +22,9 @@ export default defineConfig({
   plugins: [
     react(),
     svgr(),
+    checker({
+      typescript: true,
+    }),
     vitePluginForArco({
       theme: '@arco-themes/react-arco-pro',
       modifyVars: {
