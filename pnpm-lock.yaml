@@ -10,6 +10,7 @@ specifiers:
   '@tanstack/eslint-plugin-query': ^4.29.9
   '@tanstack/react-query': ^4.29.19
   '@tanstack/react-query-devtools': ^4.29.19
+  '@total-typescript/ts-reset': ^0.5.1
   '@types/lodash': ^4.14.199
   '@types/node': ^20.8.6
   '@types/react': ^17.0.0
@@ -78,6 +79,7 @@ dependencies:
 devDependencies:
   '@faker-js/faker': 8.2.0
   '@tanstack/eslint-plugin-query': 4.29.9
+  '@total-typescript/ts-reset': 0.5.1
   '@types/lodash': 4.14.199
   '@types/node': 20.8.6
   '@types/react': 17.0.62
@@ -897,6 +899,10 @@ packages:
       react-dom: 17.0.2_react@17.0.2
       use-sync-external-store: 1.2.0_react@17.0.2
     dev: false
+
+  /@total-typescript/ts-reset/0.5.1:
+    resolution: {integrity: sha512-AqlrT8YA1o7Ff5wPfMOL0pvL+1X+sw60NN6CcOCqs658emD6RfiXhF7Gu9QcfKBH7ELY2nInLhKSCWVoNL70MQ==}
+    dev: true
 
   /@types/cookie/0.4.1:
     resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
